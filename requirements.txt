@@ -1,0 +1,8 @@
+pdfminer.six
+pypdf
+langchain
+regex
+sentence-transformers
+rank-bm25
+torch
+numpy
