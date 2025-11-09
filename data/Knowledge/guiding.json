@@ -1,0 +1,258 @@
+{
+  "subjects": [
+    {
+      "name": "triet-hoc",
+      "overview": "triết học mác - lênin là hệ thống tri thức lý luận chung nhất của con người về thế giới; về vị trí, vai trò của con người trong thế giới ấy [1]. môn học nghiên cứu những quy luật chung nhất của tự nhiên, xã hội và tư duy, đồng thời thực hiện chức năng phương pháp luận chung nhất trong nhận thức và hoạt động thực tiễn [2, 3].",
+      "level": {
+        "beginner": {
+          "required_chapter": [
+            "phần i chương i: khái lược về triết học",
+            "phần i chương iii: sự ra đời và phát triển của triết học mác - lênin",
+            "phần ii chương v: vật chất và ý thức",
+            "phần ii chương vi: hai nguyên lý của phép biện chứng duy vật"
+          ],
+          "core_concepts": [
+            "triết học là hệ thống tri thức lý luận chung nhất của con người về thế giới",
+            "vấn đề cơ bản của triết học (hai mặt: vật chất - ý thức, khả năng nhận thức)",
+            "chức năng thế giới quan và chức năng phương pháp luận của triết học",
+            "sự đối lập giữa phương pháp siêu hình và phương pháp biện chứng",
+            "các hình thức cơ bản của chủ nghĩa duy vật (chất phác, siêu hình, biện chứng)",
+            "điều kiện lịch sử ra đời triết học mác (kinh tế - xã hội, nguồn gốc lý luận, tiền đề khoa học tự nhiên)",
+            "định nghĩa vật chất của v.i. lênin",
+            "vận động, không gian, thời gian là những phương thức tồn tại của vật chất",
+            "nguồn gốc tự nhiên (bộ óc người, phản ánh) và nguồn gốc xã hội (lao động, ngôn ngữ) của ý thức",
+            "ý thức là sự phản ánh hiện thực khách quan vào bộ óc người một cách năng động, sáng tạo",
+            "vật chất quyết định ý thức, ý thức tác động trở lại vật chất và ý nghĩa phương pháp luận (tôn trọng khách quan, phát huy năng động chủ quan)",
+            "nguyên lý về mối liên hệ phổ biến (tính khách quan, tính phổ biến, tính đa dạng)",
+            "nguyên lý về sự phát triển (khái niệm phát triển là vận động tiến lên từ thấp đến cao, tính khách quan, tính phổ biến)"
+          ],
+          "assessment_questions": [
+            "vấn đề cơ bản của triết học là gì? cơ sở để phân biệt chủ nghĩa duy vật và chủ nghĩa duy tâm trong triết học?",
+            "định nghĩa và nội dung của định nghĩa vật chất của lênin? giá trị khoa học và ý nghĩa phương pháp luận của định nghĩa ấy?",
+            "quan điểm của triết học duy vật biện chứng về nguồn gốc và bản chất của ý thức?",
+            "phân tích nguyên lý về mối liên hệ phổ biến và nguyên lý về sự phát triển?"
+          ]
+        },
+        "exam": {
+          "required_chapter": [
+            "phần ii chương vii: những cặp phạm trù cơ bản của phép biện chứng duy vật",
+            "phần ii chương viii: những quy luật cơ bản của phép biện chứng duy vật",
+            "phần ii chương ix: lý luận nhận thức",
+            "phần ii chương x: hình thái kinh tế - xã hội"
+          ],
+          "core_concepts": [
+            "bản chất của phạm trù (hình thành trong quá trình hoạt động nhận thức và thực tiễn của con người)",
+            "mối quan hệ biện chứng giữa cái riêng và cái chung (cái chung tồn tại trong cái riêng, cái riêng chỉ tồn tại trong mối liên hệ với cái chung)",
+            "mối quan hệ biện chứng giữa nguyên nhân và kết quả (nguyên nhân sinh ra kết quả, kết quả tác động trở lại nguyên nhân)",
+            "mối quan hệ biện chứng giữa tất nhiên và ngẫu nhiên (thống nhất hữu cơ, chuyển hóa cho nhau)",
+            "mối quan hệ biện chứng giữa nội dung và hình thức (nội dung quyết định hình thức, hình thức tác động trở lại nội dung)",
+            "khái niệm chất, lượng, độ, điểm nút và bước nhảy",
+            "nội dung quy luật chuyển hóa từ những sự thay đổi về lượng thành những sự thay đổi về chất và ngược lại",
+            "nội dung quy luật thống nhất và đấu tranh của các mặt đối lập (mâu thuẫn là nguồn gốc của sự vận động và phát triển)",
+            "thực tiễn là toàn bộ những hoạt động vật chất có mục đích, mang tính lịch sử - xã hội của con người nhằm cải biến tự nhiên và xã hội",
+            "vai trò của thực tiễn đối với nhận thức (là cơ sở, động lực, mục đích và là tiêu chuẩn kiểm tra chân lý)",
+            "con đường biện chứng của quá trình nhận thức (trực quan sinh động -> tư duy trừu tượng -> thực tiễn)",
+            "chân lý (tính khách quan, tính tuyệt đối, tính tương đối, tính cụ thể)",
+            "phương thức sản xuất là sự thống nhất giữa lực lượng sản xuất ở một trình độ nhất định và quan hệ sản xuất tương ứng",
+            "quy luật sự phù hợp của quan hệ sản xuất với trình độ phát triển của lực lượng sản xuất",
+            "quan hệ cơ sở hạ tầng quyết định kiến trúc thượng tầng, kiến trúc thượng tầng tác động trở lại cơ sở hạ tầng",
+            "hình thái kinh tế - xã hội là một phạm trù dùng để chỉ xã hội ở từng giai đoạn lịch sử nhất định"
+          ],
+          "assessment_questions": [
+            "phân tích quan hệ biện chứng giữa nội dung và hình thức. ý nghĩa phương pháp luận của việc nghiên cứu mối quan hệ này?",
+            "trình bày nội dung quy luật chuyển hóa từ những thay đổi về lượng thành những thay đổi về chất và ngược lại? ý nghĩa phương pháp luận của việc nghiên cứu quy luật này?",
+            "thực tiễn là gì? phân tích vai trò của thực tiễn đối với nhận thức?",
+            "phân tích con đường biện chứng của quá trình nhận thức?",
+            "phân tích mối quan hệ giữa cơ sở hạ tầng và kiến trúc thượng tầng."
+          ]
+        },
+        "advanced": {
+          "required_chapter": [
+            "phần i chương ii: khái lược về lịch sử triết học trước mác",
+            "phần i chương iv: một số trào lưu triết học phương tây hiện đại",
+            "phần ii chương viii: những quy luật cơ bản của phép biện chứng duy vật (phần iv)",
+            "phần ii chương xi: giai cấp và dân tộc",
+            "phần ii chương xii: nhà nước và cách mạng xã hội",
+            "phần ii chương xiii: ý thức xã hội",
+            "phần ii chương xiv: quan điểm triết học mác - lênin về con người"
+          ],
+          "core_concepts": [
+            "đặc điểm của triết học ấn độ cổ, trung đại (tính biện chứng, tính trừu tượng cao)",
+            "đặc điểm của triết học trung hoa cổ, trung đại (nhấn mạnh tinh thần nhân văn, chính trị đạo đức)",
+            "nội dung của quy luật phủ định của phủ định (tính khách quan, tính kế thừa, phát triển theo đường xoáy ốc)",
+            "đặc điểm cơ bản của chủ nghĩa thực chứng [74, 75]",
+            "đặc điểm cơ bản của chủ nghĩa hiện sinh (phân biệt hữu thể và hiện hữu, tự do tuyệt đối)",
+            "đặc điểm cơ bản của chủ nghĩa phơrớt (vai trò của vô thức, lý luận về nhân cách: cái ấy, cái tôi, cái siêu tôi)",
+            "định nghĩa giai cấp của v.i. lênin (dựa trên quan hệ sở hữu tư liệu sản xuất)",
+            "đấu tranh giai cấp là cuộc đấu tranh giải quyết mâu thuẫn về lợi ích",
+            "bản chất nhà nước (là bộ máy của một giai cấp này dùng để trấn áp một giai cấp khác)",
+            "đặc trưng cơ bản của nhà nước (quản lý lãnh thổ, bộ máy quyền lực chuyên nghiệp)",
+            "cách mạng xã hội (sự biến đổi có tính chất bước ngoặt về chất)",
+            "nguyên nhân sâu xa của cách mạng xã hội là mâu thuẫn giữa llsx và qhsx",
+            "bản chất con người là tổng hoà những quan hệ xã hội",
+            "con người là chủ thể và là sản phẩm của lịch sử",
+            "quần chúng nhân dân là chủ thể sáng tạo chân chính ra lịch sử (lực lượng sản xuất cơ bản, động lực cách mạng)",
+            "vai trò của lãnh tụ (nắm bắt xu thế, định hướng chiến lược)",
+            "tồn tại xã hội quyết định ý thức xã hội [94, 95]",
+            "tính độc lập tương đối của ý thức xã hội (tác động trở lại, tính kế thừa, lạc hậu, vượt trước)"
+          ],
+          "assessment_questions": [
+            "phân tích nội dung của quy luật phủ định của phủ định? ý nghĩa phương pháp luận của việc nghiên cứu quy luật này?",
+            "phân tích nguồn gốc, bản chất của nhà nước, nêu các kiểu và hình thức nhà nước?",
+            "mối liên hệ biện chứng giữa tồn tại xã hội và ý thức xã hội và ý nghĩa phương pháp luận?",
+            "phân tích vấn đề bản chất con người theo quan điểm của triết học mác - lênin?",
+            "vận dụng học thuyết hình thái kinh tế - xã hội vào sự nghiệp xây dựng chủ nghĩa xã hội ở việt nam hiện nay?"
+          ]
+        }
+      }
+    },
+    {
+      "name": "lich-su-dang",
+      "overview": "môn học trình bày có hệ thống cương lĩnh, đường lối, chủ trương, chính sách lớn của đảng cộng sản việt nam qua các thời kỳ lịch sử, làm sáng rõ bản chất cách mạng của đảng, với tư cách là đội tiên phong của giai cấp công nhân, nhân dân lao động và của dân tộc. nội dung tập trung nghiên cứu 3 thời kỳ lịch sử nổi bật của đảng.",
+      "level": {
+        "beginner": {
+          "required_chapter": [
+            "chương nhập môn: đối tượng, chức năng, nhiệm vụ, nội dung và phương pháp nghiên cứu, học tập lịch sử đảng cộng sản việt nam",
+            "chương i: đảng cộng sản việt nam ra đời và lãnh đạo đấu tranh giải phóng dân tộc (1930 - 1945)"
+          ],
+          "core_concepts": [
+            "đối tượng nghiên cứu là sự ra đời, phát triển và hoạt động lãnh đạo của đảng qua các thời kỳ lịch sử, đặc biệt là cương lĩnh, đường lối, chủ trương, chính sách lớn",
+            "chức năng của khoa học lịch sử đảng là nhận thức, giáo dục, dự báo và phê phán",
+            "sự ra đời của đảng là kết quả của sự kết hợp chủ nghĩa mác-lênin với phong trào công nhân và phong trào yêu nước việt nam",
+            "nguyên nhân thất bại của các phong trào yêu nước trước năm 1930 (thiếu đường lối chính trị đúng đắn, tổ chức vững mạnh, phương pháp đấu tranh thích hợp)",
+            "nội dung cơ bản của cương lĩnh chính trị đầu tiên của đảng (2-1930): xác định đường lối chiến lược là 'tư sản dân quyền cách mạng và thổ địa cách mạng để đi tới xã hội cộng sản', nhiệm vụ chủ yếu là 'đánh đổ đế quốc chủ nghĩa pháp và bọn phong kiến', 'làm cho nước nam được hoàn toàn độc lập', khẳng định vai trò lãnh đạo của đảng cộng sản việt nam",
+            "tính chất của cách mạng tháng tám: là cuộc cách mạng giải phóng dân tộc, nhưng tính chất dân chủ chưa đầy đủ và sâu sắc (chưa làm cách mạng ruộng đất, chưa xóa bỏ chế độ phong kiến chiếm hữu ruộng đất)",
+            "kinh nghiệm từ cách mạng tháng tám: giương cao ngọn cờ giải phóng dân tộc, tạm gác nhiệm vụ cách mạng ruộng đất"
+          ],
+          "assessment_questions": [
+            "phân tích vai trò của nguyễn ái quốc trong việc chuẩn bị các điều kiện về tư tưởng, chính trị, tổ chức cho sự ra đời của đảng cộng sản việt nam",
+            "trình bày và phân tích nội dung cơ bản của cương lĩnh chính trị đầu tiên của đảng (2-1930)",
+            "vì sao đảng phải thay đổi chiến lược, đặt nhiệm vụ 'dân tộc giải phóng' lên hàng đầu, tạm gác khẩu hiệu 'cách mạng ruộng đất' tại hội nghị trung ương 8 (5-1941)",
+            "ý nghĩa lịch sử của việc thành lập đảng cộng sản việt nam (1930)"
+          ]
+        },
+        "exam": {
+          "required_chapter": [
+            "chương ii: hoàn thành giải phóng dân tộc, thống nhất đất nước (1945 - 1975)",
+            "chương iii - phần i: lãnh đạo cả nước xây dựng chủ nghĩa xã hội và bảo vệ tổ quốc (1975 - 1986)"
+          ],
+          "core_concepts": [
+            "đường lối kháng chiến toàn quốc chống pháp (1946-1954): toàn dân, toàn diện, lâu dài và dựa vào sức mình là chính",
+            "kinh nghiệm lãnh đạo kháng chiến chống pháp: đề ra đường lối đúng đắn, kết hợp chặt chẽ và giải quyết đúng đắn mối quan hệ giữa hai nhiệm vụ 'kháng chiến' và 'kiến quốc', phát triển loại hình chiến tranh nhân dân",
+            "đường lối chung của cách mạng việt nam sau 1954 (đại hội iii - 1960): thực hiện đồng thời hai chiến lược cách mạng ở hai miền (cnxh ở miền bắc, dân tộc dân chủ nhân dân ở miền nam)",
+            "vị trí, vai trò của hai chiến lược cách mạng: miền bắc (hậu phương lớn) giữ vai trò quyết định nhất; miền nam (tiền tuyến lớn) giữ vai trò quyết định trực tiếp",
+            "đường lối kháng chiến chống mỹ (1965-1975): quyết tâm chiến lược đánh thắng giặc mỹ xâm lược, phương châm chiến lược đánh lâu dài, dựa vào sức mình là chính",
+            "chiến lược và phương pháp cách mạng chống mỹ: giữ vững và phát triển thế tiến công, kiên trì kết hợp đấu tranh quân sự với đấu tranh chính trị, thực hiện ba mũi giáp công trên ba vùng chiến lược",
+            "ý nghĩa lịch sử của thắng lợi 1975: kết thúc thắng lợi cách mạng dân tộc dân chủ nhân dân, mở ra kỷ nguyên cả nước hòa bình, thống nhất, quá độ lên chủ nghĩa xã hội",
+            "nhiệm vụ đầu tiên sau 1975: hoàn thành thống nhất đất nước về mặt nhà nước (tổng tuyển cử 25-4-1976)",
+            "ba đặc điểm lớn của cách mạng việt nam sau 1975 (đại hội iv): từ sản xuất nhỏ tiến thẳng lên cnxh (đặc điểm lớn nhất), tổ quốc thống nhất nhưng còn nhiều khó khăn do hậu quả chiến tranh, cách mạng tiến hành trong hoàn cảnh quốc tế thuận lợi nhưng đấu tranh gay go",
+            "đường lối chung của cách mạng xã hội chủ nghĩa (đại hội iv): nắm vững chuyên chính vô sản, tiến hành đồng thời ba cuộc cách mạng (qhsx, khoa học-kỹ thuật (then chốt), tư tưởng-văn hóa)",
+            "nguyên nhân chủ quan dẫn đến khủng hoảng kinh tế-xã hội (1975-1986): sai lầm trong đánh giá tình hình, xác định mục tiêu, bố trí cơ cấu kinh tế, duy trì quá lâu cơ chế tập trung, quan liêu, bao cấp"
+          ],
+          "assessment_questions": [
+            "phân tích đường lối kháng chiến 'toàn dân, toàn diện, lâu dài, dựa vào sức mình là chính' của đảng trong cuộc kháng chiến chống pháp (1946-1954)",
+            "phân tích mối quan hệ giữa hai chiến lược cách mạng ở hai miền nam - bắc trong giai đoạn 1954-1975 theo nghị quyết đại hội iii của đảng",
+            "trình bày quá trình và ý nghĩa của việc hoàn thành thống nhất đất nước về mặt nhà nước (1975-1976)",
+            "phân tích những sai lầm, khuyết điểm trong lãnh đạo kinh tế của đảng dẫn đến khủng hoảng kinh tế-xã hội (1975-1986)"
+          ]
+        },
+        "advanced": {
+          "required_chapter": [
+            "chương iii - phần ii: lãnh đạo công cuộc đổi mới, đẩy mạnh công nghiệp hóa, hiện đại hóa và hội nhập quốc tế (1986 - 2018)",
+            "tổng kết: thành tựu, ý nghĩa lịch sử và kinh nghiệm lãnh đạo của đảng trong sự nghiệp đổi mới"
+          ],
+          "core_concepts": [
+            "đường lối đổi mới toàn diện (đại hội vi - 1986): nhìn thẳng vào sự thật, đổi mới tư duy kinh tế, xóa bỏ cơ chế tập trung quan liêu bao cấp, chuyển sang hạch toán kinh doanh",
+            "bốn bài học quý báu từ đại hội vi: quán triệt tư tưởng 'lấy dân làm gốc', xuất phát từ thực tế và hành động theo quy luật khách quan, kết hợp sức mạnh dân tộc với sức mạnh thời đại, chăm lo xây dựng đảng ngang tầm",
+            "đặc trưng cơ bản của xã hội xã hội chủ nghĩa (cương lĩnh 2011)",
+            "phát triển nền kinh tế thị trường định hướng xã hội chủ nghĩa: là mô hình kinh tế tổng quát trong thời kỳ quá độ; thừa nhận nhiều hình thức sở hữu, nhiều thành phần kinh tế, trong đó kinh tế nhà nước giữ vai trò chủ đạo, kinh tế tư nhân là động lực quan trọng",
+            "ba đột phá chiến lược (đại hội xi): hoàn thiện thể chế kinh tế thị trường định hướng xã hội chủ nghĩa, phát triển nguồn nhân lực chất lượng cao, xây dựng hệ thống kết cấu hạ tầng đồng bộ",
+            "bản chất và nguyên tắc xây dựng nhà nước pháp quyền xã hội chủ nghĩa của nhân dân, do nhân dân, vì nhân dân do đảng cộng sản lãnh đạo",
+            "vấn đề xây dựng, chỉnh đốn đảng, ngăn chặn, đẩy lùi suy thoái về tư tưởng chính trị, đạo đức, lối sống, 'tự diễn biến', 'tự chuyển hóa' (nghị quyết trung ương 4 khóa xi và xii)",
+            "năm kinh nghiệm lớn của đảng trong lãnh đạo công cuộc đổi mới: kiên định mục tiêu độc lập dân tộc và cnxh, quán triệt 'dân là gốc', đổi mới toàn diện và đồng bộ, đặt lợi ích quốc gia-dân tộc lên trên hết, thường xuyên tự đổi mới, tự chỉnh đốn đảng"
+          ],
+          "assessment_questions": [
+            "phân tích những nội dung cơ bản của đường lối đổi mới toàn diện (đại hội vi - 1986)",
+            "trình bày và phân tích các đặc trưng cơ bản của xã hội xã hội chủ nghĩa mà nhân dân ta xây dựng (cương lĩnh 2011)",
+            "phân tích những nhiệm vụ trọng tâm và giải pháp tăng cường xây dựng, chỉnh đốn đảng hiện nay, đặc biệt là ngăn chặn, đẩy lùi 'tự diễn biến', 'tự chuyển hóa'",
+            "thảo luận về vai trò của kinh tế tư nhân trong nền kinh tế thị trường định hướng xã hội chủ nghĩa hiện nay",
+            "phân tích và làm rõ mối quan hệ giữa 'đổi mới kinh tế' và 'đổi mới chính trị' trong công cuộc đổi mới của đảng"
+          ]
+        }
+      }
+    },
+    {
+      "name": "tu-tuong-ho-chi-minh",
+      "overview": "môn học nghiên cứu hệ thống các quan điểm toàn diện và sâu sắc của hồ chí minh về những vấn đề cơ bản của cách mạng việt nam, bao gồm: độc lập dân tộc gắn liền với chủ nghĩa xã hội, xây dựng đảng cộng sản, nhà nước pháp quyền, khối đại đoàn kết dân tộc, văn hóa, đạo đức, và quan hệ quốc tế. tư tưởng hồ chí minh là ngọn cờ dẫn dắt cách mạng việt nam và là tài sản tinh thần vô giá của dân tộc.",
+      "level": {
+        "beginner": {
+          "required_chapter": [
+            "chương i: khái niệm, đối tượng, phương pháp nghiên cứu và ý nghĩa học tập tư tưởng hồ chí minh",
+            "chương ii: cơ sở, quá trình hình thành và phát triển tư tưởng hồ chí minh",
+            "chương iii: tư tưởng hồ chí minh về độc lập dân tộc và chủ nghĩa xã hội"
+          ],
+          "core_concepts": [
+            "khái niệm tư tưởng hồ chí minh (hệ thống quan điểm toàn diện và sâu sắc về những vấn đề cơ bản của cách mạng việt nam)",
+            "giá trị và ý nghĩa của việc nghiên cứu tư tưởng hồ chí minh",
+            "các giai đoạn hình thành và phát triển tư tưởng hồ chí minh (từ hình thành tư tưởng cứu nước đến hoàn thiện tư tưởng về cnxh)",
+            "nội dung cốt lõi của tư tưởng hồ chí minh: độc lập dân tộc gắn liền với chủ nghĩa xã hội",
+            "quan điểm về độc lập dân tộc (độc lập, tự do là quyền thiêng liêng, bất khả xâm phạm; độc lập phải là độc lập thật sự, hoàn toàn)",
+            "quan điểm về chủ nghĩa xã hội (đặc trưng cơ bản của cnxh việt nam: dân giàu, nước mạnh, xã hội công bằng, dân chủ, văn minh)",
+            "con đường quá độ lên chủ nghĩa xã hội ở việt nam (quá độ lâu dài, gian khổ, phức tạp, bỏ qua chế độ tư bản chủ nghĩa)"
+          ],
+          
+          "assessment_questions": [
+            "phân tích các giai đoạn hình thành và phát triển tư tưởng hồ chí minh",
+            "trình bày và phân tích nội dung cơ bản của quan điểm hồ chí minh về độc lập dân tộc",
+            "làm rõ tính thống nhất biện chứng giữa độc lập dân tộc và chủ nghĩa xã hội trong tư tưởng hồ chí minh",
+            "nêu các đặc trưng cơ bản của chủ nghĩa xã hội theo tư tưởng hồ chí minh"
+          ]
+        },
+        "exam": {
+          "required_chapter": [
+            "chương iv: tư tưởng hồ chí minh về đảng cộng sản việt nam và nhà nước của dân, do dân, vì dân",
+            "chương v: tư tưởng hồ chí minh về đại đoàn kết dân tộc",
+            "chương vi: tư tưởng hồ chí minh về văn hóa, đạo đức và xây dựng con người mới"
+          ],
+          "core_concepts": [
+            "vai trò lãnh đạo của đảng cộng sản (đảng là đội tiên phong của giai cấp công nhân và của dân tộc; đảng phải trong sạch, vững mạnh, là đạo đức, là văn minh)",
+            "nguyên tắc xây dựng đảng kiểu mới (tập trung dân chủ, tự phê bình và phê bình, đoàn kết thống nhất trong đảng)",
+            "quan điểm về nhà nước của dân, do dân, vì dân (quyền lực thuộc về nhân dân; nhà nước quản lý bằng pháp luật và đề cao đạo đức)",
+            "yêu cầu về xây dựng đội ngũ cán bộ, công chức (cần, kiệm, liêm, chính; chí công vô tư)",
+            "vị trí, vai trò của đại đoàn kết dân tộc (là vấn đề sống còn, là chiến lược lâu dài; là động lực và nguồn sức mạnh to lớn)",
+            "hình thức tổ chức khối đại đoàn kết (mặt trận dân tộc thống nhất, lấy liên minh công-nông-trí làm nền tảng)",
+            "quan điểm về vị trí, vai trò của văn hóa (văn hóa là mục tiêu, động lực của sự phát triển xã hội)",
+            "những phẩm chất đạo đức cơ bản của con người mới (trung với nước, hiếu với dân; cần, kiệm, liêm, chính, chí công vô tư; tinh thần quốc tế trong sáng)"
+          ],
+          "assessment_questions": [
+            "phân tích những nguyên tắc xây dựng đảng cộng sản việt nam kiểu mới theo tư tưởng hồ chí minh",
+            "phân tích nội dung và làm rõ ý nghĩa của quan điểm hồ chí minh về nhà nước của dân, do dân, vì dân",
+            "vì sao hồ chí minh khẳng định: đại đoàn kết dân tộc là chiến lược cơ bản, lâu dài của cách mạng việt nam?",
+            "phân tích vai trò của đạo đức cách mạng trong việc xây dựng con người mới theo tư tưởng hồ chí minh"
+          ]
+        },
+        "advanced": {
+          "required_chapter": [
+            "chương vii: tư tưởng hồ chí minh về vị trí của việt nam trong quan hệ quốc tế",
+            "phần tổng kết: vận dụng và phát triển tư tưởng hồ chí minh trong giai đoạn hiện nay"
+          ],
+          "core_concepts": [
+            "quan điểm về sức mạnh thời đại và tầm quan trọng của việc kết hợp sức mạnh dân tộc với sức mạnh thời đại",
+            "quan điểm về hội nhập quốc tế và chính sách đối ngoại (thêm bạn bớt thù, hợp tác bình đẳng, đa dạng hóa, đa phương hóa quan hệ)",
+            "quan điểm về chủ nghĩa yêu nước chân chính gắn liền với chủ nghĩa quốc tế vô sản",
+            "giá trị lý luận và thực tiễn của tư tưởng hồ chí minh đối với công cuộc đổi mới, công nghiệp hóa, hiện đại hóa đất nước",
+            "vận dụng tư tưởng hồ chí minh trong xây dựng nền kinh tế thị trường định hướng xã hội chủ nghĩa",
+            "vận dụng tư tưởng hồ chí minh trong xây dựng nhà nước pháp quyền xã hội chủ nghĩa và đẩy mạnh đấu tranh chống tham nhũng, lãng phí",
+            "sự phát triển sáng tạo tư tưởng hồ chí minh của đảng cộng sản việt nam trong các cương lĩnh và nghị quyết gần đây"
+          ],
+          "assessment_questions": [
+            "phân tích quan điểm 'thêm bạn bớt thù' của hồ chí minh và ý nghĩa trong việc định hình chính sách đối ngoại của việt nam hiện nay",
+            "vận dụng tư tưởng hồ chí minh về đại đoàn kết dân tộc trong việc phát huy sức mạnh khối đại đoàn kết toàn dân tộc trước những thách thức của toàn cầu hóa",
+            "phân tích những giá trị cốt lõi của tư tưởng hồ chí minh đối với sự nghiệp xây dựng đảng trong sạch, vững mạnh và ngăn chặn suy thoái hiện nay",
+            "thảo luận về sự phát triển sáng tạo tư tưởng hồ chí minh của đảng cộng sản việt nam về con đường đi lên chủ nghĩa xã hội trong bối cảnh mới"
+          ]
+        }
+      }
+    }
+  ]
+}

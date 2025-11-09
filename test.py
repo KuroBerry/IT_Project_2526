@@ -1,12 +1,19 @@
 from src.core.Retrieval import Retrieval
 from src.core.Generator import Generator
 from src.core.ChatManager import ChatManager
-from src.core.loader import load_components
+from src.core.loader import load_components, load_user
 
 def main():
+    #Load User
+    user = load_user("U000", "./users/users.json")
+
+    # import json
+    # print(json.dumps(user, ensure_ascii=False, indent=2))
+
     #Load các API, thành phần cần thiết,.....
-    router_model, retriever, generator = load_components()
-    chat_manager = ChatManager(router_model, retriever, generator)
+    rewrite_model, router_model, retriever, generator = load_components()
+    chat_manager = ChatManager(user, rewrite_model, router_model, retriever, generator)
+    TOP_K = 10
 
     # Loop vô hạn nhận query
     try:
@@ -18,9 +25,8 @@ def main():
                 print("Tạm biệt 👋")
                 break
             
-            route, result, _ = chat_manager.handle_query(query)
-            print(f"\n🤖 Answer ({route}): {result}")
-            # print(f"\n🗂️ History ({route}): {history}")
+            result, chat_history = chat_manager.handle_query(user, query, TOP_K)
+            print(f"\n🤖 Answer: {result}")
             print("\n" + "="*50)
 
     except KeyboardInterrupt:
