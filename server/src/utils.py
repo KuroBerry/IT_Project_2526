@@ -20,7 +20,7 @@ def text_to_sparse_vector_bm25(text, bm25, vocabulary):
 
 
 def load_chunks_from_json(file_path):
-    with open(file_path, "r", encoding="utf-8") as f:
+    with open(file_path, "r", encoding="utf-8", errors='ignore') as f:
         chunks = json.load(f)
     return chunks
 
@@ -30,16 +30,16 @@ def save_chunks_to_json(chunks, output_path):
     """
     os.makedirs(os.path.dirname(output_path), exist_ok=True)  # Tạo folder nếu chưa có
 
-    with open(output_path, "w", encoding="utf-8") as f:
+    with open(output_path, "w", encoding="utf-8", errors='ignore') as f:
         json.dump(chunks, f, ensure_ascii=False, indent=2)
 
     print(f"✅ Đã lưu {len(chunks)} chunks vào: {output_path}")
 
 def get_bm25_vocabulary():
 
-    triet_hoc_path = r"./data/TrietHoc/chunks/TrietHoc_Raw.json"
-    lich_su_dang_path = r"./data/LichSuDang/chunks/Lich_Su_Dang_Raw.json"
-    tu_tuong_hcm_path = r"./data/TuTuongHoChiMinh/chunks/TT_HCM_Raw.json"
+    triet_hoc_path = r"./server/data/TrietHoc/chunks/TrietHoc_Raw.json"
+    lich_su_dang_path = r"./server/data/LichSuDang/chunks/Lich_Su_Dang_Raw.json"
+    tu_tuong_hcm_path = r"./server/data/TuTuongHoChiMinh/chunks/TT_HCM_Raw.json"
 
     raw_chunk = load_chunks_from_json(lich_su_dang_path) + load_chunks_from_json(triet_hoc_path) + load_chunks_from_json(tu_tuong_hcm_path)
 

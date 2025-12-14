@@ -1,5 +1,7 @@
 #Đây sẽ là file chứa các prompt mẫu cho các nhiệm vụ khác nhau
-from langchain.prompts import ChatPromptTemplate
+# from langchain.prompts import ChatPromptTemplate
+# Chuyển sang dùng langchain_core
+from langchain_core.prompts import ChatPromptTemplate
 
 #Promt để viết lại truy vấn của người dùng nhằm bổ sung ngữ cảnh từ lịch sử hội thoại
 rewrite_prompt = ChatPromptTemplate.from_messages([

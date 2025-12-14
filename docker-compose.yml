@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+
+  #--- MONGODB ---
+
+  
+  # --- BACKEND ---
+  backend:
+    build: .
+    container_name: edurag-backend
+    # Lệnh chạy: Lưu ý tên file là 'demo_fastapi'
+    command: uvicorn server.fastapi_run:app --host 0.0.0.0 --port 8000 --reload
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/app
+    environment:
+      - PYTHONUNBUFFERED=1
+    env_file:
+      - .env
+
+  # --- FRONTEND ---
+  frontend:
+    build: .
+    container_name: edurag-frontend
+    command: streamlit run UI/streamlit_UI.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    volumes:
+      - .:/app
+    env_file:
+      - .env
+    # QUAN TRỌNG: Chỉ đường cho Frontend tìm Backend
+    environment:
+      - API_URL=http://backend:8000
+    depends_on:
+      - backend

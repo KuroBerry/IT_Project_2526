@@ -1,7 +1,7 @@
 from prompts.prompts import router_prompt, rewrite_prompt, extract_concepts_instructor, extract_instructor
 from utils import summarize_answer
-from users.user_manager import get_user_level, get_subject_content
-import json, os, copy
+from server.users.user_manager import get_user_level, get_subject_content, update_user_progress
+import json
 
 
 class ChatManager:
@@ -34,9 +34,9 @@ class ChatManager:
     # ========================================
     # 3 Xác định môn học và cấp độ người dùng cần định hướng
     # ========================================
-    def extract_subject_and_level(self, query, user):
+    def extract_subject_and_level(self, query):
         chain = extract_instructor | self.multi_purposes_model
-        result = chain.invoke({"query": query, "last_guiding": user["last_guiding"]}).content.strip()
+        result = chain.invoke({"query": query, "last_guiding": self.user["last_guiding"]}).content.strip()
 
         # Tách kết quả theo dấu phẩy
         parts = [p.strip() for p in result.split(",")]
@@ -50,13 +50,13 @@ class ChatManager:
     # ========================================
     # 4 Tìm kiếm các khái niệm của môn học mà người dùng chưa học xong trong lộ trình hiện tại của họ
     # ========================================
-    def find_missing_concepts(self, user):
-        subject = user["last_guiding"].get("subject")
-        level = user["last_guiding"].get("level")
+    def find_missing_concepts(self):
+        subject = self.user["last_guiding"].get("subject")
+        level = self.user["last_guiding"].get("level")
 
         if subject != "None" and level != "None":
-            user_progress = get_user_level(user, subject, level)
-            knowledge = get_subject_content("./data/Knowledge/guiding.json", subject, level)
+            user_progress = get_user_level(self.user, subject, level)
+            knowledge = get_subject_content("./server/data/Knowledge/guiding.json", subject, level)
 
             #Tính toán các khái niệm mà người dùng còn chưa học xong
             missing_concepts = set(knowledge["core_concepts"]) - set(user_progress["progress_concepts"])
@@ -92,11 +92,8 @@ class ChatManager:
     # ========================================
     # 6 Quản lý thông tin người dùng sau mỗi phiên chat
     # ========================================
-    def post_interaction(self, user_query, bot_answer, file_path: str = "./users/users.json"):
+    def post_interaction(self, user_query, bot_answer):
         #Cập nhật thông tin của người dùng sau mỗi phiên chat (Mỗi lần tương tác)
-
-        #Lấy người dùng lên
-        user = self.user  # user đang hoạt động
 
         #Tóm tắt câu trả lời gần đây nhất
         sum_ans = summarize_answer(bot_answer, self.multi_purposes_model)
@@ -108,80 +105,30 @@ class ChatManager:
         ]
 
         #Cập nhật lịch sử chat của người dùng
-        user.setdefault("chat_history", [])
-        user["chat_history"].extend(new_conversation)
-
+        self.user.setdefault("chat_history", [])
+        self.user["chat_history"].extend(new_conversation)
         #Chỉ lấy 20 đoạn hội thoại gần đây nhất (Do mỗi đoạn gồn 2 entry)
-        user["chat_history"] = user["chat_history"][-40:]
+        self.user["chat_history"] = self.user["chat_history"][-40:]
 
-        subject = user.get("last_guiding", {}).get("subject")
-        level = user.get("last_guiding", {}).get("level")
+
+        subject = self.user.get("last_guiding", {}).get("subject")
+        level = self.user.get("last_guiding", {}).get("level")
 
         #Cập nhật các khái niệm mà người dùng đã hoàn thành trong các phiên chat gần đây
-        _, _, missing_concepts = self.find_missing_concepts(user)
-        print("\n[INFO] Các khái niệm còn thiếu:")
-
-        if missing_concepts != None:
-            for mc in missing_concepts:
-                print(f"\t- {mc}")
+        _, _, missing_concepts = self.find_missing_concepts()
                 
         new_concepts = self.extract_concept(user_query,
                                             bot_answer,
                                             missing_concepts)
-        print(f"\n[INFO] Khái niệm người dùng vừa học được:\n\t- {new_concepts}")
 
-        if new_concepts is not None and new_concepts in missing_concepts:
-            progress_path = user.setdefault("subjects", {}) \
+        #Thêm các khái niệm người dùng vừa học được:
+        if new_concepts is not None and new_concepts in missing_concepts and missing_concepts is not None:
+            progress_path = self.user.setdefault("subjects", {}) \
                         .setdefault(subject, {}) \
                         .setdefault(level, {}) \
                         .setdefault("progress_concepts", [])
-
-            # --- Cập nhật, tránh trùng ---
             progress_path.append(new_concepts)
-
-        # --- Bước 4: Ghi toàn bộ object user ra file log ---
-        log_file_path = "./log.txt"
-        try:
-            # --- Bước 1: Lấy thông tin cơ bản và an toàn ---
-            user_id = user.get("_id")
-            history_to_log = user.get("chat_history", [])
-            
-            # --- Bước 2: Lấy thông tin guiding (theo yêu cầu mới) ---
-            
-            # 1. Lấy dict "last_guiding". 
-            last_guiding_info = user.get("last_guiding", {})
-            
-            # 2. Lấy tên môn học từ "last_guiding"
-            guided_subject_name = last_guiding_info.get("subject") 
-            guided_subject_level = last_guiding_info.get("level") 
-            
-            # 3. Lấy chi tiết của môn học đó từ dict "subjects"
-            all_subjects_data = user.get("subjects", {})
-            
-            # Dùng .get(guided_subject_name, {}) để tra cứu
-            # Nếu user mới (guided_subject_name=None), nó sẽ trả về dict rỗng
-            guided_subject_details = all_subjects_data.get(guided_subject_name, {})
-            guided_subject_w_level_details = guided_subject_details.get(guided_subject_level, {})
-
-            # --- Bước 3: Tạo một object log SẠCH và CÓ CẤU TRÚC ---
-            # Cách này tốt hơn nhiều so với việc cộng các list
-            log_data = {
-                "user_id": user_id,
-                "last_guiding_session": last_guiding_info,
-                "current_subject_progress": guided_subject_w_level_details,
-                "full_chat_history": history_to_log
-            }
-            
-            # --- Bước 4: Ghi file log ---
-            with open(log_file_path, "a", encoding="utf-8") as f:
-                # Dump object 'log_data' (an toàn và có cấu trúc)
-                json.dump(log_data, f, ensure_ascii=False, indent=4)
-                f.write("\n" + "="*80 + "\n")
-                
-        except Exception as e:
-            # Lỗi TypeError (dict + list) sẽ không xảy ra nữa
-            # nhưng vẫn giữ khối này để bắt các lỗi khác (ví dụ: file permission)
-            print(f"Lỗi khi ghi log vào {log_file_path}: {e}")
+        
 
     def get_recent_history(self, limit=20):
         """Lấy n lượt hội thoại gần nhất."""
@@ -221,7 +168,8 @@ class ChatManager:
     # ========================================
     # 8 Xử lý truy vấn chính (RAG + Memory)
     # ========================================
-    def handle_query(self, user, query, top_k):
+    def handle_query(self, query, top_k):
+
         # B1: Viết lại Query đủ ngữ cảnh và Phân loại
         recent_conversation = self.get_recent_history(5) #Lấy ra lịch sử 5 cuộc hội thoại gần nhất
         rewrite_query = self.rewrite_query(query, recent_conversation)
@@ -249,8 +197,7 @@ class ChatManager:
                                                     top_k)
         elif route == "dinh-huong":
             print("\t[INFO] Đang lấy thông tin từ lộ trình học của người dùng")
-            subject, level = self.extract_subject_and_level(enriched_query,
-                                                            user)
+            subject, level = self.extract_subject_and_level(enriched_query)
 
             #Nễu không xác định được level hay môn học cần định hướng
             if subject == "None" or level == "None":
@@ -259,10 +206,10 @@ class ChatManager:
                 return result, self.history
             
             # Cập nhật last_guiding của người dùng
-            user["last_guiding"] = {"subject": subject, "level": level}
+            self.user["last_guiding"] = {"subject": subject, "level": level}
 
             # Lấy ra lộ trình hiện tại, các khái niệm cần thiết của môn học và các khái niệm người dùng chưa học xong
-            user_progress, knowledge, missing_concepts = self.find_missing_concepts(user)
+            user_progress, knowledge, missing_concepts = self.find_missing_concepts()
 
         # B4: Sinh câu trả lời
         print(f"\t[INFO] Đang suy nghĩ câu trả lời...")
@@ -270,13 +217,14 @@ class ChatManager:
         result = self.generator.generate_answer(query = enriched_query, 
                                                 namespace = route, 
                                                 contexts = contexts, 
-                                                last_guiding = user["last_guiding"],
+                                                last_guiding = self.user["last_guiding"],
                                                 user_progress = user_progress, 
                                                 knowledge = knowledge, 
                                                 missing_concepts = missing_concepts)
 
-        # B5: Lưu lại vào lịch sử
+        # B5: Xử lý sau mỗi lần tương tác
         self.post_interaction(query, result)
+        update_user_progress(self.user)
         print("="*50)
 
         return result, self.history

@@ -3,7 +3,6 @@ import sys
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from prompts.prompts import subjects_instructor, invalid_instructor, normal_instructor, guiding_instructor, extract_instructor
-from users.user_manager import get_user_level, get_subject_content
 
 class Generator:
     def __init__(self, gen_model = None):

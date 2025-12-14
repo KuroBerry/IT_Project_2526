@@ -1,3 +1,11 @@
+# Quan trọng: Ưu tiên tải bản CPU
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# Core AI (Pytorch CPU sẽ được cài từ link trên)
+torch
+torchvision
+torchaudio
+
 requests
 beautifulsoup4
 pinecone
@@ -19,3 +27,6 @@ google.genai
 dotenv
 matplotlib
 langchain-google-genai
+fastapi
+uvicorn
+pymongo
