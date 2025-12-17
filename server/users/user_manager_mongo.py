@@ -1,14 +1,15 @@
+import json
 import os
-from server.database import users_collection 
+from server.database import user_collection # Import cái collection đã kết nối ở Bước 2
 
-# --- HÀM 1: Tạo cấu trúc User mặc định (GIỮ NGUYÊN) ---
-# Logic này vẫn cần thiết để khởi tạo dữ liệu cho người mới
+# --- 1. HÀM CŨ (Giữ nguyên) ---
+# Hàm này chỉ tạo dữ liệu rỗng trong RAM, không liên quan DB nên giữ nguyên
 def default_user(user_id: str):
     levels = ["beginner", "exam", "advanced"]
     subjects = ["lich-su-dang", "tu-tuong-ho-chi-minh", "triet-hoc"]
 
     return {
-        "_id": user_id, # MongoDB dùng _id làm khóa chính luôn
+        "_id": user_id,
         "name": "",
         "last_guiding": {
             "subject": "None",
@@ -26,45 +27,47 @@ def default_user(user_id: str):
         }
     }
 
-# --- HÀM 2: Load User (THAY ĐỔI LỚN) ---
-def load_user(user_id: str):
-    """
-    Tìm user trong MongoDB. Nếu không có thì tạo mới và lưu vào DB.
-    """
-    # 1. Tìm trong DB
-    user = users_collection.find_one({"_id": user_id})
+# --- 2. HÀM MỚI (Dùng MongoDB) ---
 
-    # 2. Nếu tìm thấy -> Trả về luôn
+# Lưu ý: Có thêm từ khóa 'async' vì MongoDB (motor) chạy bất đồng bộ
+async def load_user(user_id: str):
+    """
+    Tìm user trong Database. Nếu không có thì tạo mới và lưu luôn vào DB.
+    """
+    # Tìm trong DB xem có ai có _id này không
+    user = await user_collection.find_one({"_id": user_id})
+
     if user:
-        # (Optional) Validate cấu trúc dữ liệu cũ nếu cần thiết tại đây
-        return user
-
-    # 3. Nếu chưa có -> Tạo mới và Insert vào DB
-    print(f"👤 Tạo user mới: {user_id}")
+        return user # Tìm thấy thì trả về ngay
+    
+    # Nếu chưa có: Tạo mới -> Lưu vào DB -> Trả về
     new_user = default_user(user_id)
-    users_collection.insert_one(new_user)
+    await user_collection.insert_one(new_user)
+    print(f"✅ Đã tạo user mới trong MongoDB: {user_id}")
     
     return new_user
 
-# --- HÀM 3: Update Progress (THAY ĐỔI LỚN) ---
-def update_user_progress(new_user_info):
+async def update_user_progress(new_user_info: dict):
     """
-    Cập nhật toàn bộ thông tin user vào DB
+    Cập nhật thông tin user.
+    Dùng $set để chỉ cập nhật những trường thay đổi (không ghi đè cả document).
     """
     user_id = new_user_info.get("_id")
     if not user_id:
-        print("❌ Lỗi: User data không có _id")
+        print("⚠️ Lỗi: Dữ liệu update thiếu _id")
         return
 
-    # Dùng lệnh replace_one để ghi đè thông tin mới vào user cũ
-    # upsert=True: Nếu lỡ user bị xóa mất thì tự tạo lại
-    users_collection.replace_one({"_id": user_id}, new_user_info, upsert=True)
-    
-    # Debug log (tắt đi khi chạy thật)
-    # print(f"✅ Đã cập nhật tiến độ cho user: {user_id}")
+    # Lệnh update_one của Mongo
+    # Tham số 1: Điều kiện tìm ({ "_id": ... })
+    # Tham số 2: Dữ liệu cần sửa ({ "$set": ... })
+    await user_collection.update_one(
+        {"_id": user_id}, 
+        {"$set": new_user_info}
+    )
+    print(f"💾 Đã cập nhật user {user_id} vào MongoDB")
 
-# --- HÀM 4: Helper lấy Level (GIỮ NGUYÊN) ---
-# Vì 'user' load từ Mongo về vẫn là Dictionary Python, nên hàm này không đổi
+# --- 3. HÀM TIỆN ÍCH (Giữ nguyên) ---
+# Hàm get_user_level xử lý trên Dictionary trong RAM, không cần gọi DB nên giữ nguyên
 def get_user_level(user, subject, level):
     subjects = user.setdefault("subjects", {})
     subject_data = subjects.setdefault(subject, {})
@@ -72,3 +75,26 @@ def get_user_level(user, subject, level):
         "progress_concepts": []
     })
     return level_data
+
+# Hàm này đọc file nội dung môn học (Static data), không phải user data
+# Nên ta tạm thời giữ nguyên logic đọc file JSON cũ.
+def get_subject_content(json_path: str, subject: str, level: str):
+    if not os.path.exists(json_path):
+        print(f"[!] File không tồn tại: {json_path}")
+        return None
+        
+    with open(json_path, "r", encoding="utf-8") as f:
+        data = json.load(f)
+
+    for subj in data.get("subjects", []):
+        if subj.get("name") == subject:
+            level_data = subj.get("level", {}).get(level)
+            if level_data:
+                return {
+                    "subject": subj["name"],
+                    "overview": subj.get("overview"),
+                    "required_chapter": level_data.get("required_chapter", []),
+                    "core_concepts": level_data.get("core_concepts", []),
+                    "assessment_questions": level_data.get("assessment_questions", [])
+                }
+    return None

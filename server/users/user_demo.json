@@ -1,0 +1,116 @@
+[
+  {
+    "_id": "U000",
+    "name": "Nguyễn Văn B",
+    "last_guiding": {
+      "subject": "None",
+      "level": "None"
+    },
+    "subjects": {
+      "lich-su-dang": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      },
+      "tu-tuong-ho-chi-minh": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      },
+      "triet-hoc": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      }
+    },
+    "chat_history": [
+      {
+        "role": "user",
+        "content": "Chào bạn"
+      },
+      {
+        "role": "bot",
+        "content": "bạn là trợ lý ai, có thể hỗ trợ các môn học đại cương việt nam hệ không chuyên: lịch sử đảng, tư tưởng hồ chí minh, triết học mác-lênin."
+      },
+      {
+        "role": "user",
+        "content": "Bạn có thể làm được gì"
+      },
+      {
+        "role": "bot",
+        "content": "tóm tắt: tôi là trợ lý ai hỗ trợ các môn học đại cương việt nam hệ không chuyên: lịch sử đảng, tư tưởng hồ chí minh, triết học mác-lênin."
+      }
+    ]
+  },
+  {
+    "_id": "U001",
+    "name": "",
+    "last_guiding": {
+      "subject": "None",
+      "level": "None"
+    },
+    "chat_history": [
+      {
+        "role": "user",
+        "content": "chào"
+      },
+      {
+        "role": "bot",
+        "content": "bạn là trợ lý ai hỗ trợ các môn học đại cương việt nam hệ không chuyên: lịch sử đảng, tư tưởng hồ chí minh, triết học mác-lênin."
+      }
+    ],
+    "subjects": {
+      "lich-su-dang": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      },
+      "tu-tuong-ho-chi-minh": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      },
+      "triet-hoc": {
+        "beginner": {
+          "progress_concepts": []
+        },
+        "exam": {
+          "progress_concepts": []
+        },
+        "advanced": {
+          "progress_concepts": []
+        }
+      }
+    }
+  }
+]

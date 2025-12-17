@@ -37,15 +37,14 @@ async def chat_endpoint(request: ChatRequest):
     
     # 1. Load user (Giả lập logic cũ của bạn)
     # Lưu ý: Load file json mỗi lần request có thể chậm, sau này nên optimize
-    try:
-        user = load_user(request.user_id)
-    except Exception as e:
-        raise HTTPException(status_code=404, detail=f"User {request.user_id} not found")
+
+    user = await load_user(request.user_id)
+
 
     # 2. Gọi Logic (Giống hệt file test)
     # Thay vì query lấy từ input(), ta lấy từ request.query
     chat_manager = ChatManager(user, rewrite_model, router_model, retriever, generator)
-    result, history = chat_manager.handle_query(request.query, request.top_k)
+    result, history = await chat_manager.handle_query(request.query, request.top_k)
 
     # 3. Trả về kết quả (Thay thế cho print)
     # Trả về JSON để Frontend/Mobile App đọc được

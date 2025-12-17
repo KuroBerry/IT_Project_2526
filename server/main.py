@@ -1,38 +1,65 @@
-from src.core.Retrieval import Retrieval
-from src.core.Generator import Generator
-from src.core.ChatManager import ChatManager
-from src.core.loader import load_components, load_user
+from database import user_collection # Import cái collection đã kết nối ở Bước 2
+import asyncio
 
-def main():
-    #Load các API, thành phần cần thiết,.....
-    rewrite_model, router_model, retriever, generator = load_components()
-    chat_manager = ChatManager(rewrite_model, router_model, retriever, generator)
+def default_user(user_id: str):
+    levels = ["beginner", "exam", "advanced"]
+    subjects = ["lich-su-dang", "tu-tuong-ho-chi-minh", "triet-hoc"]
 
-    #Load User
-    user = load_user("U001", "./users/users.json")
+    return {
+        "_id": user_id,
+        "name": "",
+        "last_guiding": {
+            "subject": "None",
+            "level": "None"
+        },
+        "chat_history": [],
+        "subjects": {
+            subject: {
+                level: {
+                    "progress_concepts": []
+                }
+                for level in levels
+            }
+            for subject in subjects
+        }
+    }
 
-    import json
-    print(json.dumps(user, ensure_ascii=False, indent=2))
+async def load_user(user_id: str):
+    """
+    Tìm user trong Database. Nếu không có thì tạo mới và lưu luôn vào DB.
+    """
+    # Tìm trong DB xem có ai có _id này không
+    user = await user_collection.find_one({"_id": user_id})
 
-    TOP_K = 10
+    if user:
+        print(user['name'])
+        return user # Tìm thấy thì trả về ngay
+    
+    # Nếu chưa có: Tạo mới -> Lưu vào DB -> Trả về
+    new_user = default_user(user_id)
+    await user_collection.insert_one(new_user)
+    print(f"✅ Đã tạo user mới trong MongoDB: {user_id}")
+    
+    return new_user
 
-    # Loop vô hạn nhận query
-    try:
-        while True:
-            query = input("\n🧠 Query: ").strip()
-            if not query:
-                continue
-            if query.lower() in ["exit", "quit", "q"]:
-                print("Tạm biệt 👋")
-                break
-            
-            route, result, _ = chat_manager.handle_query(query, TOP_K)
-            print(f"\n🤖 Answer ({route}): {result}")
-            # print(f"\n🗂️ History ({route}): {history}")
-            print("\n" + "="*50)
+async def update_user_progress(new_user_info: dict):
+    """
+    Cập nhật thông tin user.
+    Dùng $set để chỉ cập nhật những trường thay đổi (không ghi đè cả document).
+    """
+    user_id = new_user_info.get("_id")
+    if not user_id:
+        print("⚠️ Lỗi: Dữ liệu update thiếu _id")
+        return
 
-    except KeyboardInterrupt:
-        print("\n[INFO] Dừng chương trình thủ công. Goodbye!")
+    # Lệnh update_one của Mongo
+    # Tham số 1: Điều kiện tìm ({ "_id": ... })
+    # Tham số 2: Dữ liệu cần sửa ({ "$set": ... })
+    await user_collection.update_one(
+        {"_id": user_id}, 
+        {"$set": new_user_info}
+    )
+    print(f"💾 Đã cập nhật user {user_id} vào MongoDB")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(load_user("U002"))

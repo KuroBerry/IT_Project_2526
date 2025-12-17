@@ -3,10 +3,11 @@ from src.core.Generator import Generator
 from src.core.ChatManager import ChatManager
 from src.core.loader import load_components
 from users.user_manager import load_user
+import asyncio
 
-def main():
+async def main():
     #Load User
-    user = load_user("U001")
+    user = await load_user("U015")
 
     # import json
     # print(json.dumps(user, ensure_ascii=False, indent=2))
@@ -27,7 +28,7 @@ def main():
                 print("Tạm biệt 👋")
                 break
             
-            result, chat_history = chat_manager.handle_query(query, TOP_K)
+            result, chat_history = await chat_manager.handle_query(query, TOP_K)
             print(f"\n🤖 Answer: {result}")
             print("\n" + "="*50)
 
@@ -35,4 +36,4 @@ def main():
         print("\n[INFO] Dừng chương trình thủ công. Goodbye!")
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())

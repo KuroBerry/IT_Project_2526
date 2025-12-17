@@ -168,7 +168,7 @@ class ChatManager:
     # ========================================
     # 8 Xử lý truy vấn chính (RAG + Memory)
     # ========================================
-    def handle_query(self, query, top_k):
+    async def handle_query(self, query, top_k):
 
         # B1: Viết lại Query đủ ngữ cảnh và Phân loại
         recent_conversation = self.get_recent_history(5) #Lấy ra lịch sử 5 cuộc hội thoại gần nhất
@@ -224,7 +224,7 @@ class ChatManager:
 
         # B5: Xử lý sau mỗi lần tương tác
         self.post_interaction(query, result)
-        update_user_progress(self.user)
+        await update_user_progress(self.user)
         print("="*50)
 
         return result, self.history

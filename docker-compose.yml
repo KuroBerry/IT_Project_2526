@@ -2,23 +2,41 @@ version: '3.8'
 
 services:
 
-  #--- MONGODB ---
+  # --- MONGODB ---
+  mongodb:
+    image: mongo:6.0 # Dùng bản ổn định 6.0
+    container_name: edurag-mongo
+    restart: always
+    ports:
+      - "27017:27017"
+    volumes:
+      # Map thư mục 'MongoDB' ở máy thật vào nơi chứa dữ liệu trong Container
+      - ./MongoDB:/data/db
+    env_file:
+      - .env
+    environment:
+      # Tạo user/pass mặc định cho DB (nên đổi nếu đưa lên production)
+      - MONGO_INITDB_ROOT_USERNAME=${MONGO_INIT_USER}
+      - MONGO_INITDB_ROOT_PASSWORD=${MONGO_INIT_PASS}
 
-  
   # --- BACKEND ---
   backend:
     build: .
     container_name: edurag-backend
-    # Lệnh chạy: Lưu ý tên file là 'demo_fastapi'
     command: uvicorn server.fastapi_run:app --host 0.0.0.0 --port 8000 --reload
     ports:
       - "8000:8000"
     volumes:
       - .:/app
-    environment:
-      - PYTHONUNBUFFERED=1
     env_file:
       - .env
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MONGO_URL=mongodb://${MONGO_INIT_USER}:${MONGO_INIT_PASS}@mongodb:27017
+      - DB_NAME=${DB_NAME}
+
+    depends_on:
+      - mongodb # Backend sẽ đợi Mongo chạy trước
 
   # --- FRONTEND ---
   frontend:
@@ -31,8 +49,7 @@ services:
       - .:/app
     env_file:
       - .env
-    # QUAN TRỌNG: Chỉ đường cho Frontend tìm Backend
     environment:
-      - API_URL=http://backend:8000
+      - API_URL=${API_URL}
     depends_on:
       - backend
