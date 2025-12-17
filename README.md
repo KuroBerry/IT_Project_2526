@@ -25,7 +25,7 @@ Dự án Chatbot hỗ trợ học tập các môn đại cương (Triết học,
 
 ### Bước 1: Clone dự án về máy
 ```bash
-git clone <link-repo-cua-ban>
+git clone git@github.com:KuroBerry/IT_Project_2526.git
 cd IT_Project_2526
 ```
 ### Bước 2: Cấu hình biến môi trường (.env)
