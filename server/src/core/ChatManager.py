@@ -122,13 +122,14 @@ class ChatManager:
                                             missing_concepts)
 
         #Thêm các khái niệm người dùng vừa học được:
-        if new_concepts is not None and new_concepts in missing_concepts and missing_concepts is not None:
-            progress_path = self.user.setdefault("subjects", {}) \
-                        .setdefault(subject, {}) \
-                        .setdefault(level, {}) \
-                        .setdefault("progress_concepts", [])
-            progress_path.append(new_concepts)
-        
+        if missing_concepts is not None:
+            if new_concepts is not None and new_concepts in missing_concepts:
+                progress_path = self.user.setdefault("subjects", {}) \
+                            .setdefault(subject, {}) \
+                            .setdefault(level, {}) \
+                            .setdefault("progress_concepts", [])
+                progress_path.append(new_concepts)
+            
 
     def get_recent_history(self, limit=20):
         """Lấy n lượt hội thoại gần nhất."""
