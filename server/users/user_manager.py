@@ -201,7 +201,7 @@ async def update_user_progress(new_user_info: dict):
     Cập nhật thông tin user.
     Dùng $set để chỉ cập nhật những trường thay đổi (không ghi đè cả document).
     """
-    print(new_user_info)
+    # print(new_user_info)
     user_id = new_user_info.get("_id")
     if not user_id:
         print("⚠️ Lỗi: Dữ liệu update thiếu _id")
