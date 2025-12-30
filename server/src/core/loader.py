@@ -8,8 +8,10 @@ from core.Generator import Generator
 from utils import get_bm25_vocabulary, save_chunks_to_json
 from config.setting import settings
 
-import json
-import os
+from os import getenv
+from dotenv import load_dotenv
+
+load_dotenv()
 
 #Hàm dùng để load các thành phần cần thiết để triên khai dự án
 def load_components():
@@ -22,10 +24,10 @@ def load_components():
     dense_index = pc.Index(host=settings.HOST_DENSE)
     sparse_index = pc.Index(host=settings.HOST_SPARSE)
 
-    print("[INFO] Connecting to Gemini Model...")
-    multi_purposes_model = init_chat_model("gemini-2.5-flash-lite", model_provider="google_genai")
-    router_model = init_chat_model("gemini-2.5-flash-lite", model_provider="google_genai")
-    generator_model = init_chat_model("gemini-2.5-flash-lite", model_provider="google_genai")
+    print("[INFO] Connecting to Gemini 2.5 Flash Lite Model...")
+    multi_purposes_model = init_chat_model("google/gemini-2.5-flash-lite", model_provider="openai",api_key=getenv("OPENROUTER_API_KEY"), base_url="https://openrouter.ai/api/v1")
+    router_model = init_chat_model("google/gemini-2.5-flash-lite", model_provider="openai", api_key=getenv("OPENROUTER_API_KEY"), base_url="https://openrouter.ai/api/v1")
+    generator_model = init_chat_model("google/gemini-2.5-flash-lite", model_provider="openai",api_key=getenv("OPENROUTER_API_KEY"), base_url="https://openrouter.ai/api/v1")
 
     print("[INFO] Initializing Retrieval and Generation components...")
     retriever = Retrieval(pc, dense_index, sparse_index, embedding_model, bm25, vocabulary)

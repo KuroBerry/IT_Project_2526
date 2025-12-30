@@ -1,3 +1,4 @@
+import asyncio
 from prompts.prompts import router_prompt, rewrite_prompt, extract_concepts_instructor, extract_instructor
 from utils import summarize_answer
 from server.users.user_manager import get_user_level, get_subject_content, update_user_progress
@@ -122,13 +123,12 @@ class ChatManager:
                                             missing_concepts)
 
         #Thêm các khái niệm người dùng vừa học được:
-        if missing_concepts is not None:
-            if new_concepts is not None and new_concepts in missing_concepts:
-                progress_path = self.user.setdefault("subjects", {}) \
-                            .setdefault(subject, {}) \
-                            .setdefault(level, {}) \
-                            .setdefault("progress_concepts", [])
-                progress_path.append(new_concepts)
+        if new_concepts is not None and new_concepts in missing_concepts and missing_concepts is not None:
+            progress_path = self.user.setdefault("subjects", {}) \
+                        .setdefault(subject, {}) \
+                        .setdefault(level, {}) \
+                        .setdefault("progress_concepts", [])
+            progress_path.append(new_concepts)
             
 
     def get_recent_history(self, limit=20):
@@ -229,3 +229,83 @@ class ChatManager:
         print("="*50)
 
         return result, self.history
+
+    # import asyncio
+    # async def handle_query(self, query, top_k):
+    #         # [AN TOÀN] Định nghĩa thời gian nghỉ nhỏ giữa các bước nội bộ
+    #         # Để tránh bắn 6 request trong 1 giây (Burst request)
+    #         MICRO_SLEEP = 2 
+
+    #         # B1: Viết lại Query đủ ngữ cảnh và Phân loại
+    #         recent_conversation = self.get_recent_history(5)
+    #         rewrite_query = self.rewrite_query(query, recent_conversation)
+    #         print("\t[INFO] Đang viết lại câu đầy đủ ngữ cảnh")
+            
+    #         # [AN TOÀN] Nghỉ nhẹ sau bước 1
+    #         await asyncio.sleep(MICRO_SLEEP) 
+
+    #         # Phân loại truy vấn để xác định route
+    #         route = self.query_router(rewrite_query)
+    #         print("\t[INFO] Phát hiện chức năng:", route)
+
+    #         # Kết hợp promt hiện tại cùng với lịch sử chat
+    #         enriched_query = self.build_context_prompt(rewrite_query)
+    #         print("\t[INFO] Kết hợp câu vào với lịch sử chat trước đó")
+            
+    #         # [AN TOÀN] Nghỉ nhẹ sau bước định tuyến
+    #         await asyncio.sleep(MICRO_SLEEP)
+
+    #         # Xử lý các route tương ứng
+    #         contexts = None
+    #         result = None
+    #         user_progress = None
+    #         knowledge = None
+    #         missing_concepts = None
+
+    #         if route in ["lich-su-dang", "triet-hoc", "tu-tuong-ho-chi-minh"]:
+    #             print("\t[INFO] Đang thực hiện tìm kiếm nội dung theo câu hỏi")
+    #             # Nếu hybrid_search có gọi Embedding API thì đây cũng là 1 request
+    #             contexts = self.retriever.hybrid_search(rewrite_query, route, top_k)
+                
+    #         elif route == "dinh-huong":
+    #             print("\t[INFO] Đang lấy thông tin từ lộ trình học của người dùng")
+    #             subject, level = self.extract_subject_and_level(enriched_query)
+
+    #             # Nếu không xác định được level hay môn học cần định hướng
+    #             if subject == "None" or level == "None":
+    #                 result = "Còn thiếu thông tin cần thiết"
+    #                 # Post interaction cũng có thể gọi API để tóm tắt hoặc lưu log
+    #                 self.post_interaction(query, result) 
+    #                 return result, self.history
+                
+    #             # Cập nhật last_guiding của người dùng
+    #             self.user["last_guiding"] = {"subject": subject, "level": level}
+
+    #             # Lấy ra lộ trình hiện tại...
+    #             user_progress, knowledge, missing_concepts = self.find_missing_concepts()
+                
+    #             # [AN TOÀN] Nghỉ nhẹ nếu đi vào route này vì vừa gọi extract_subject
+    #             await asyncio.sleep(MICRO_SLEEP)
+
+    #         # B4: Sinh câu trả lời
+    #         print(f"\t[INFO] Đang suy nghĩ câu trả lời...")
+            
+    #         # Đây là request nặng nhất
+    #         result = self.generator.generate_answer(query = enriched_query, 
+    #                                                 namespace = route, 
+    #                                                 contexts = contexts, 
+    #                                                 last_guiding = self.user["last_guiding"],
+    #                                                 user_progress = user_progress, 
+    #                                                 knowledge = knowledge, 
+    #                                                 missing_concepts = missing_concepts)
+
+    #         # [AN TOÀN] Nghỉ nhẹ sau khi sinh câu trả lời xong
+    #         await asyncio.sleep(MICRO_SLEEP)
+
+    #         # B5: Xử lý sau mỗi lần tương tác
+    #         # Hàm này thường hay gọi API để tóm tắt tiêu đề hoặc phân tích sentiment
+    #         self.post_interaction(query, result)
+    #         await update_user_progress(self.user)
+    #         print("="*50)
+
+    #         return result, self.history
