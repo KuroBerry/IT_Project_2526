@@ -91,6 +91,3 @@ mongodb://admin:123456@localhost:27017/?authSource=admin
 ## 🌐 Truy cập ứng dụng
 - Frontend (Chatbot): http://localhost:8501
 - Backend API Docs: http://localhost:8000/docs
-
-## ⚠️ Nếu bạn đang là Giảng viên muốn test thử hệ thống, hãy liên hệ tôi qua:
-- 0707072966 (Zalo) hoặc thinhlanguyenquoc@gmail.com để lấy các API, Token cần thiết để thử hệ thống.
